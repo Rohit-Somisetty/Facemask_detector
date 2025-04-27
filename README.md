@@ -67,7 +67,3 @@ The trained model (`MaskNet1.hdf5`) achieves excellent accuracy on the test set 
 Got ideas or improvements? Feel free to fork the repository and submit a pull request!
 
 ---
-
-## 📜 License
-
-*(Optional: Specify License Type)*
