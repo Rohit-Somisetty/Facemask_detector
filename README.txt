@@ -1,75 +1,98 @@
-# Face Mask Detector 😷
+# 😷 Real-Time Face Mask Detector 🚀
 
-## Description
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/) [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://www.tensorflow.org/) [![Keras](https://img.shields.io/badge/Keras-%3E3.0-red.svg)](https://keras.io/) [![OpenCV](https://img.shields.io/badge/OpenCV-Required-brightgreen.svg)](https://opencv.org/)
 
-This project implements a real-time face mask detection system using Python, TensorFlow/Keras, and OpenCV. It identifies whether individuals in a video stream are wearing face masks or not. The system utilises a deep learning model built upon MobileNet architecture through transfer learning, fine-tuned on a custom dataset of masked and unmasked faces.
 
-## Key Features
+---
 
-* **Real-time Detection:** Analyzes live video streams from a camera to detect mask usage.
-* **Deep Learning Model:** Employs a fine-tuned MobileNet model for accurate classification.
-* **Transfer Learning:** Leverages pre-trained weights from MobileNet (trained on ImageNet) and adapts them for the specific task of mask detection, freezing initial layers and training the final ones.
-* **Clear Visual Feedback:** Draws a bounding box (circle in this case) around detected faces and labels them as "Mask" or "No Mask".
+## 🔥 Overview
 
-## Technology Stack
+Ever wondered if someone's *really* wearing a mask? This project leverages the power of Deep Learning to build a **real-time face mask detection system**! Using Python, TensorFlow/Keras, and OpenCV, it analyzes your camera feed to instantly identify masked and unmasked faces.
 
-* Python
+Built upon the robust **MobileNet** architecture via **transfer learning**, this detector is both efficient and accurate.
+
+---
+
+## ✨ Key Features
+
+* **⚡ Real-Time Performance:** Detects mask usage live from a webcam feed.
+* **🧠 Deep Learning Powered:** Utilizes a fine-tuned MobileNet model for high accuracy.
+* **🎓 Transfer Learning:** Smartly adapts a powerful pre-trained model (MobileNet on ImageNet) for this specific task, saving time and resources.
+* **👀 Clear Visual Feedback:** Draws a helpful circle around detected faces, clearly labeling them "Mask" or "No Mask".
+
+---
+
+## 💻 Tech Stack
+
+* Python 3
 * TensorFlow / Keras
-* OpenCV (implied for real-time video processing in `Main.ipynb`)
+* OpenCV
 * NumPy
-* Matplotlib / Seaborn (for model evaluation visuals)
-* Scikit-learn (for data splitting and evaluation metrics)
+* Matplotlib / Seaborn (for visualizing model training/evaluation)
+* Scikit-learn (for data splitting and performance metrics)
 
-## Setup and Usage
+---
 
-Follow these steps to get the detector running:
+## ⚙️ Setup & Blast Off!
 
-1.  **Download Repository Files:**
-    * Clone or download all files from the GitHub repository: `https://github.com/Tihor3393/Facemask_detector`
-    * Ensure all downloaded files (`FaceMask_Train.ipynb`, `Main.ipynb`, `app.py`, `haarcascade_frontalface_default.xml`) are in the same directory.
+Get ready to run the detector:
 
-2.  **Download Dataset:**
-    * Download the image dataset from Google Drive: [Dataset Link](https://drive.google.com/drive/folders/1HgfcJ8rWpuhZIXeAOk1dyvNamqvAdLKY?usp=sharing)
-    * Organize the dataset as expected by the training script (likely separate folders for 'withmask' and 'withoutmask').
+1.  **Clone the Repo:**
+    * Grab all the code: `git clone https://github.com/Tihor3393/Facemask_detector`
+    * Navigate into the directory: `cd Facemask_detector`
+    * Make sure all essential files (`FaceMask_Train.ipynb`, `Main.ipynb`, `app.py`, `haarcascade_frontalface_default.xml`) are present.
 
-3.  **Update Training Script Paths:**
-    * Open `FaceMask_Train.ipynb`.
-    * Update the file paths within the notebook to point to the correct locations of your downloaded dataset directories (including the main dataset folder and the specific 'withmask' and 'withoutmask' subfolders). *Check cells involving `os.listdir` and `load_img`*.
+2.  **Snag the Dataset:**
+    * Download the image dataset from: [Google Drive Dataset Link](https://drive.google.com/drive/folders/1HgfcJ8rWpuhZIXeAOk1dyvNamqvAdLKY?usp=sharing)
+    * Organize it into `withmask` and `withoutmask` folders within a main dataset directory, as expected by `FaceMask_Train.ipynb`.
 
-4.  **Train the Model:**
-    * Run all the cells in the `FaceMask_Train.ipynb` notebook.
-    * This will preprocess the images, train the MobileNet-based model, and generate the following files:
-        * `data.npy` (processed image data)
-        * `labels.npy` (corresponding labels)
-        * `MaskNet1.hdf5` (the trained model weights)
-        * `mdl.h5` (an earlier save of the model structure/weights)
+3.  **Configure Training Paths:**
+    * Launch `FaceMask_Train.ipynb`.
+    * **Crucial:** Update the file paths inside to point exactly where you saved the dataset (check cells loading images, e.g., using `os.listdir` and `load_img`).
 
-5.  **Prepare for Detection:**
-    * Before running `Main.ipynb`, open it and update the directory path for the Haar Cascade file: `haarcascade_frontalface_default.xml`.
+4.  **Train Your AI Brain!**
+    * Run all cells in `FaceMask_Train.ipynb`. This might take a while depending on your hardware! ⏳
+    * It'll process images and train the model, creating these essential files:
+        * `data.npy` & `labels.npy`
+        * `MaskNet1.hdf5` (Your shiny new trained model!)
+        * `mdl.h5`
 
-6.  **Run the Detector:**
-    * Execute the `Main.ipynb` script.
-    * A window will open, capturing video from your default camera.
-    * Position your face within the indicated area (blue circle) for detection. The system will display "Mask" or "No Mask" based on its prediction.
+5.  **Prep the Detector:**
+    * Open `Main.ipynb`.
+    * Find the line loading `haarcascade_frontalface_default.xml` and update its path to the correct location in your project directory.
 
-7.  **Exit:**
-    * Press the 'q' key to close the live stream window.
+6.  **Launch!**
+    * Run the `Main.ipynb` script.
+    * Your webcam feed should appear in a new window.
+    * Show your face (masked or unmasked) in the blue circle and watch the magic happen!
 
-## Model Details
+7.  **Shutdown:**
+    * Simply press the **'q'** key to close the detector window.
 
-* **Base Model:** MobileNet (pre-trained on ImageNet, `include_top=False`).
-* **Transfer Learning:** The initial layers of MobileNet are frozen (`layer.trainable = False`), and custom Dense layers (`Dense(1024)`, `Dense(512)`, `Dense(2)`) with ReLU and Softmax activations are added and trained on the mask dataset.
-* **Optimizer:** Adam.
-* **Loss Function:** Categorical Crossentropy.
-* **Training:** The model was trained for 20 epochs with a batch size of 32, using a validation split.
+---
 
-## Generated Files (from `FaceMask_Train.ipynb`)
+## 🤖 Model Insights
 
-* `data.npy`: NumPy array containing the preprocessed image data.
-* `labels.npy`: NumPy array containing the corresponding labels (one-hot encoded).
-* `MaskNet1.hdf5`: The final trained Keras model file saved after training.
-* `mdl.h5`: An intermediate save of the Keras model.
+* **Foundation:** MobileNet (pre-trained on ImageNet).
+* **Adaptation (Transfer Learning):** We freeze the early MobileNet layers and train newly added Dense layers (1024, 512, and 2 neurons) specifically for mask detection using your dataset.
+* **Training Recipe:** Optimized with Adam, using Categorical Crossentropy loss, trained over 20 epochs.
 
-## Contributing
+---
 
-Contributions are welcome! Please feel free to submit a Pull Request or open an Issue.
+## 📊 Generated Artifacts
+
+Running `FaceMask_Train.ipynb` produces:
+
+* `data.npy`: Preprocessed image data.
+* `labels.npy`: Corresponding image labels.
+* `MaskNet1.hdf5`: The final trained model file.
+* `mdl.h5`: An intermediate model save.
+
+---
+
+## 🤝 Contributing
+
+Got ideas to make this even better? Contributions are highly encouraged! Fork the repo, make your changes, and submit a Pull Request. You can also open an Issue for bugs or feature suggestions.
+
+---
+
